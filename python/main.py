@@ -41,7 +41,8 @@ def rndStart(table):
 
 
 def main():
-    table= [0]*8
+    numberOfqueens=8
+    table= [0]*numberOfqueens
     rndStart(table)
     viewTable(table)
 
