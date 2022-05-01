@@ -21,7 +21,7 @@ def viewTable(table):
     columnFiller="|"
     twoD=arrayConverter(table)
     tableLen=len(table)
-    for i in range(tableLen):
+    for i in range(tableLen-1):
         for j in range(tableLen-1):
             print(twoD[j][i]+rowFiller,end="")
         print(twoD[tableLen-1][i])
@@ -33,12 +33,17 @@ def viewTable(table):
     print(twoD[tableLen-1][tableLen-1])
 
 # randomly assigning queens positions
+#this method insures the queens wont be in the same row at the initial state
 def rndStart(table):
+    iniPos=[0,1,2,3,4,5,6,7]
     tableLen=len(table)
     for i in range(tableLen):
-        table[i]=rnd.randint(0,tableLen-1)
+        randomIndex=rnd.randint(0,len(iniPos)-1)
+        table[i]=iniPos[randomIndex]
+        iniPos.remove(iniPos[randomIndex])
 
-
+def calculateTheMatrix(table):
+    i=1
 
 def main():
     numberOfqueens=8
