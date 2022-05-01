@@ -1,3 +1,4 @@
+import random as rnd
 # Gradient Descent approach is chosen to solve The Eight Queens problem
 
 
@@ -14,28 +15,34 @@ def arrayConverter(table):
 
     return convertedArray
 
+#a function for viewing the chess table. The queens is displayed as X and the rest are displayed as 0
 def viewTable(table):
     rowFiller=" -- "
     columnFiller="|"
     twoD=arrayConverter(table)
-    for i in range(7):
-        for j in range(7):
+    tableLen=len(table)
+    for i in range(tableLen):
+        for j in range(tableLen-1):
             print(twoD[j][i]+rowFiller,end="")
-        print(twoD[7][i])
-        for j in range(7):
+        print(twoD[tableLen-1][i])
+        for j in range(tableLen-1):
             print(columnFiller+"    ",end="")
         print(columnFiller)
     for j in range(7):
-        print(twoD[j][7]+rowFiller,end="")
-    print(twoD[7][7])
+        print(twoD[j][tableLen-1]+rowFiller,end="")
+    print(twoD[tableLen-1][tableLen-1])
 
+# randomly assigning queens positions
+def rndStart(table):
+    tableLen=len(table)
+    for i in range(tableLen):
+        table[i]=rnd.randint(0,tableLen-1)
 
-def randomAssign(table):
-    
 
 
 def main():
     table= [0]*8
+    rndStart(table)
     viewTable(table)
 
 
