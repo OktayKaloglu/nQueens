@@ -113,7 +113,7 @@ def gradientDecent(table,Pairs):
                 break
 
     return (nSwaps,nRndStart)
-
+    #return table
 
 def outPuts(output):
 
@@ -138,7 +138,8 @@ def main():
         end= timer()
         temparr=[temp[0],temp[1],end-start]
         output.append(temparr)
-
+        
+        #viewTable(graidentDecent(table,Pairs)) if we return the solution
     outPuts(output)
 
 
