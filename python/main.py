@@ -1,6 +1,6 @@
 import random as rnd
 from timeit import default_timer as timer
-
+rnd.seed(5)
 # Gradient Descent approach is chosen to solve The Eight Queens problem
 
 #The chess table has 8 rows, 8 columns and total of 64 squares
