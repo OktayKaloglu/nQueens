@@ -51,10 +51,15 @@ def calculateCollision(table):
     collisions=0
     nQueens=len(table)
     for i in range(0,nQueens):
-        for j in range(i,nQueens):
+        for j in range(i+1,nQueens):
             # the 2 queens can be in the same axis or diagonal line
-                        
-
+            #m=(y2-y1)/(x2-x1)
+            m=(table[j]-table[i])/(j-i)
+            # j-i!=0 => j!=i so We need to handle zero division.
+            # queens cant be in the same column  in random start or in any other transition state.
+            # we ensured that i wont be equal to the j.
+            if m in [0,1,-1]:
+                collisions+=1
 
     return collisions
 
@@ -65,13 +70,14 @@ def calculateCollision(table):
     # if the current table has zero collisions that is a solution
     # if no queen can swap
 def gradientDecent(table):
-
+    
 
 
 def main():
-    numberOfqueens=5
+    numberOfqueens=4
     table= [0]*numberOfqueens
-    rndStart(table)
+    table=[3,0,2,1]
+    print(calculateCollision(table))
 
 
 
