@@ -1,4 +1,6 @@
 import random as rnd
+from timeit import default_timer as timer
+
 # Gradient Descent approach is chosen to solve The Eight Queens problem
 
 #The chess table has 8 rows, 8 columns and total of 64 squares
@@ -63,21 +65,83 @@ def calculateCollision(table):
 
     return collisions
 
-
+#for available queen pairs
+def pairList(nQueens):
+    Pairs=[]
+    for i in range(nQueens-1):
+        for j in range(i+1,nQueens):
+            Pairs.append([i,j])
+    return Pairs
 
 # a function that gets 2 random queens and it checks whether new state is better than current one
     # and swaps the queens positions as new positions.
     # if the current table has zero collisions that is a solution
     # if no queen can swap
-def gradientDecent(table):
-    
+def gradientDecent(table,Pairs):
+    nSwaps=0
+    nRndStart=0
+    nQueens=len(table)
+    currentCollisions=calculateCollision(table)
+
+    while currentCollisions != 0 :
+        availablePairs=Pairs.copy()
+
+        while True:
+            nextState=table.copy()
+            index=rnd.randint(0,len(availablePairs)-1)
+            queen1=availablePairs[index][0]
+            queen2=availablePairs[index][1]
+
+            temp=nextState[queen1]
+            nextState[queen1]=nextState[queen2]
+            nextState[queen2]=temp
+
+            nextCollision=calculateCollision(nextState)
+            if nextCollision<currentCollisions:
+                table=nextState
+                currentCollisions=nextCollision
+                nSwaps+=1
+                break
+            else:
+                availablePairs.remove(availablePairs[index])
+
+            #local minima found so we need a random start
+            if len(availablePairs)==0:
+                rndStart(table)
+                currentCollisions=calculateCollision(table)
+                nRndStart+=1
+                break
+
+    return (nSwaps,nRndStart)
+
+
+def outPuts(output):
+
+    print(f"{'Swaps    ' }{'Random Restarts       '}{'TTC'}")
+    for i in range(len(output)):
+        time="{:.6f}".format(output[i][2])
+        print(f"{output[i][0] : ^5}{output[i][1] : ^22}{ time+' s'  : <0}")
+
+
+
+
 
 
 def main():
-    numberOfqueens=4
+    numberOfqueens=8
     table= [0]*numberOfqueens
-    table=[3,0,2,1]
-    print(calculateCollision(table))
+    Pairs=pairList(numberOfqueens)
+    output=[]
+    for i in range(15):
+        start = timer()
+        temp=gradientDecent(table,Pairs)
+        end= timer()
+        temparr=[temp[0],temp[1],end-start]
+        output.append(temparr)
+
+    outPuts(output)
+
+
 
 
 
