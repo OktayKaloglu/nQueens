@@ -45,8 +45,18 @@ def rndStart(table):
         iniPos.remove(iniPos[randomIndex])
 
 # a function that calculates the current state's collisions
-def calculateCollision(table):
+# between all of the queens so it will have at least combination of n to 2= n*(n-1)/2=O(n^2)
 
+def calculateCollision(table):
+    collisions=0
+    nQueens=len(table)
+    for i in range(0,nQueens):
+        for j in range(i,nQueens):
+            # the 2 queens can be in the same axis or diagonal line
+                        
+
+
+    return collisions
 
 
 
@@ -54,6 +64,7 @@ def calculateCollision(table):
     # and swaps the queens positions as new positions.
     # if the current table has zero collisions that is a solution
     # if no queen can swap
+def gradientDecent(table):
 
 
 
