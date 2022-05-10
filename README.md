@@ -15,4 +15,5 @@
 
 
 <h3> Outputs</h3>
-![image](https://user-images.githubusercontent.com/101494182/167722007-ac1862a6-e798-494c-980d-a0c4058bb2be.png)
+
+<img>![image](https://user-images.githubusercontent.com/101494182/167722007-ac1862a6-e798-494c-980d-a0c4058bb2be.png)</img>
