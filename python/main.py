@@ -111,17 +111,28 @@ def gradientDecent(table,Pairs):
                 currentCollisions=calculateCollision(table)
                 nRndStart+=1
                 break
-
+    #viewTable(table)
+    #print("  ")
+    #print("  ")
     return (nSwaps,nRndStart)
-    #return table
+
 
 def outPuts(output):
-
+    swaps=0
+    randomRestarts=0
+    TTC=0
     print(f"{'Swaps    ' }{'Random Restarts       '}{'TTC'}")
     for i in range(len(output)):
         time="{:.6f}".format(output[i][2])
         print(f"{output[i][0] : ^5}{output[i][1] : ^22}{ time+' s'  : <0}")
-
+        swaps+=output[i][0]
+        randomRestarts+=output[i][1]
+        TTC+=output[i][2]
+    print(f"{'Swaps Mean   ' }{'Random Restarts Mean     '}{'TTC Mean'}")
+    TTC="{:.6f}".format(TTC/15)
+    swaps="{:.2f}".format(swaps/15)
+    randomRestarts="{:.2f}".format(randomRestarts/15)
+    print(f"{swaps : ^10}{randomRestarts : ^28}{ TTC+' s'  : <5}")
 
 
 
@@ -138,8 +149,7 @@ def main():
         end= timer()
         temparr=[temp[0],temp[1],end-start]
         output.append(temparr)
-        
-        #viewTable(graidentDecent(table,Pairs)) if we return the solution
+
     outPuts(output)
 
 
